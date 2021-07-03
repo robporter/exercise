@@ -1,4 +1,4 @@
-package com.itv.checkout;
+package com.itv.checkout.domain.model;
 
 public class Sku {
 

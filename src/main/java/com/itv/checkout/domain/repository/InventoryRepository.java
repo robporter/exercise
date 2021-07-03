@@ -1,4 +1,6 @@
-package com.itv.checkout;
+package com.itv.checkout.domain.repository;
+
+import com.itv.checkout.domain.model.Sku;
 
 import java.util.Optional;
 

@@ -1,4 +1,8 @@
-package com.itv.checkout;
+package com.itv.checkout.domain.service;
+
+import com.itv.checkout.domain.exception.DuplicateSKUException;
+import com.itv.checkout.domain.model.Sku;
+import com.itv.checkout.domain.repository.InventoryRepository;
 
 public class InventoryService {
 

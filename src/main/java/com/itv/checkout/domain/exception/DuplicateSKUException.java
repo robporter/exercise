@@ -1,4 +1,4 @@
-package com.itv.checkout;
+package com.itv.checkout.domain.exception;
 
 public class DuplicateSKUException extends RuntimeException {
 
