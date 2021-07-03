@@ -30,12 +30,12 @@ class UnitCountPricingRuleTest {
         public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
             return Stream.of(
                     Arguments.of(1,
-                                 new UnitCountPricingRule(1, 10),
-                                 new PricingImpl(1, 10)
+                                 new UnitCountPricingRule(1, 2),
+                                 new PricingImpl(1, 2)
                     ),
                     Arguments.of(2,
-                                 new UnitCountPricingRule(1, 10),
-                                 new PricingImpl(2, 20)
+                                 new UnitCountPricingRule(1, 3),
+                                 new PricingImpl(2, 6)
                     ),
                     Arguments.of(3,
                                  new UnitCountPricingRule(1, 11),
