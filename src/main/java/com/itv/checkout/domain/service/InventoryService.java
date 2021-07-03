@@ -4,6 +4,8 @@ import com.itv.checkout.domain.exception.DuplicateSKUException;
 import com.itv.checkout.domain.model.Sku;
 import com.itv.checkout.domain.repository.InventoryRepository;
 
+import java.util.Optional;
+
 public class InventoryService {
 
     private final InventoryRepository inventoryRepository;
@@ -19,7 +21,7 @@ public class InventoryService {
         inventoryRepository.store(sku);
     }
 
-    public Sku findSkuByCode(final String code) {
-        return inventoryRepository.findSkuByCode(code).get();
+    public Optional<Sku> findSkuByCode(final String code) {
+        return inventoryRepository.findSkuByCode(code);
     }
 }

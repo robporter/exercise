@@ -55,11 +55,12 @@ public class InventoryServiceTest {
     @Test
     void findBySkuCode() {
         final Sku sku = new Sku("B");
-        given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(Optional.of(sku));
+        final Optional<Sku> expectedSku = Optional.of(sku);
+        given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(expectedSku);
 
-        final Sku actual = underTest.findSkuByCode(sku.getCode());
+        final Optional<Sku> actual = underTest.findSkuByCode(sku.getCode());
 
-        assertThat(actual).isSameAs(sku);
+        assertThat(actual).isSameAs(expectedSku);
     }
 
 }
