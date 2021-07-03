@@ -8,7 +8,7 @@ import java.util.StringJoiner;
 /**
  * Prices the requested units based on how many times they can be evenly divided by the eligibleQuantity
  * and multiplies that value by the pricePerEligibleQuantity.<br>
- * Any remaining requested units are not included in the eligibleUnits of the returned Pricing.
+ * Any remaining requested units are not included in the eligibleUnits or price value of the returned Pricing.
  */
 public class UnitCountPricingRule implements PricingRule {
 
