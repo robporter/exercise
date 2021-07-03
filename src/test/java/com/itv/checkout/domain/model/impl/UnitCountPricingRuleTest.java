@@ -13,15 +13,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class UnitCountPricingRuleTest {
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] requestedUnits: {0}, rule: {1}, result: {2}")
     @ArgumentsSource(PriceFixtures.class)
-    void getPricing(final int requestedQuantity,
+    void getPricing(final int requestedUnits,
                     final UnitCountPricingRule underTest,
                     final Pricing expectedPricing) {
 
-        final Pricing actual = underTest.getPricing(requestedQuantity);
+        final Pricing actual = underTest.getPricing(requestedUnits);
 
-        assertThat(actual).isEqualTo(expectedPricing);
+        assertThat(actual).usingRecursiveComparison().isEqualTo(expectedPricing);
     }
 
     private static class PriceFixtures implements ArgumentsProvider {

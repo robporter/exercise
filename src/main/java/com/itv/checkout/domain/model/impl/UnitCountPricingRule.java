@@ -3,6 +3,8 @@ package com.itv.checkout.domain.model.impl;
 import com.itv.checkout.domain.model.Pricing;
 import com.itv.checkout.domain.model.PricingRule;
 
+import java.util.StringJoiner;
+
 /**
  * Prices the requested units based on how many times they can be evenly divided by the eligibleQuantity
  * and multiplies that value by the pricePerEligibleQuantity.<br>
@@ -28,5 +30,13 @@ public class UnitCountPricingRule implements PricingRule {
         final int eligibleUnits = requestedUnits - ineligibleUnits;
         final int priceInPence = pricePerEligibleQuantity * eligibleUnits / eligibleQuantity;
         return new PricingImpl(eligibleUnits, priceInPence);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", UnitCountPricingRule.class.getSimpleName() + "[", "]")
+                .add("eligibleQuantity=" + eligibleQuantity)
+                .add("pricePerEligibleQuantity=" + pricePerEligibleQuantity)
+                .toString();
     }
 }
