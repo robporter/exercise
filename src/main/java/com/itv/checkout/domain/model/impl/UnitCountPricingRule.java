@@ -15,9 +15,9 @@ public class UnitCountPricingRule implements PricingRule {
     }
 
     @Override
-    public Pricing getPricing(final int units) {
-        final int ineligibleUnits = units % eligibleQuantity;
-        final int eligibleUnits = units - ineligibleUnits;
+    public Pricing getPricing(final int requestedUnits) {
+        final int ineligibleUnits = requestedUnits % eligibleQuantity;
+        final int eligibleUnits = requestedUnits - ineligibleUnits;
         final int priceInPence = pricePerEligibleQuantity * eligibleUnits / eligibleQuantity;
         return new PricingImpl(eligibleUnits, priceInPence);
     }
