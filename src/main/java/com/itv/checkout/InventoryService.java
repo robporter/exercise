@@ -9,8 +9,9 @@ public class InventoryService {
     }
 
     public void addSku(final Sku sku) {
-        if (!inventoryRepository.findSkuByCode(sku.getCode()).isPresent()) {
-            inventoryRepository.store(sku);
+        if (inventoryRepository.findSkuByCode(sku.getCode()).isPresent()) {
+            throw new RuntimeException();
         }
+        inventoryRepository.store(sku);
     }
 }
