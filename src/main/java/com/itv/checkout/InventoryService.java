@@ -9,7 +9,7 @@ public class InventoryService {
     }
 
     public void addSku(final Sku sku) {
-        if (inventoryRepository.findSkuByCode(sku.getCode()) == null) {
+        if (!inventoryRepository.findSkuByCode(sku.getCode()).isPresent()) {
             inventoryRepository.store(sku);
         }
     }

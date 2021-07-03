@@ -1,11 +1,13 @@
 package com.itv.checkout;
 
+import java.util.Optional;
+
 public class InventoryRepository {
     public void store(final Sku sku) {
 
     }
 
-    public Sku findSkuByCode(final String code) {
-        return null;
+    public Optional<Sku> findSkuByCode(final String code) {
+        return Optional.empty();
     }
 }

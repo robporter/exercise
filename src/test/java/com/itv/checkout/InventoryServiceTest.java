@@ -6,6 +6,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -37,7 +39,7 @@ public class InventoryServiceTest {
     void addSkuPreventsDuplicates() {
 
         final Sku sku = new Sku("A");
-        given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(sku);
+        given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(Optional.of(sku));
 
         underTest.addSku(sku);
 
