@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
@@ -42,9 +43,10 @@ public class InventoryServiceTest {
         final Sku sku = new Sku("A");
         given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(Optional.of(sku));
 
-        assertThrows(RuntimeException.class, () -> underTest.addSku(sku));
+        final DuplicateSKUException actual = assertThrows(DuplicateSKUException.class, () -> underTest.addSku(sku));
 
         verify(inventoryRepository, never()).store(sku);
+        assertThat(actual.getMessage()).isEqualTo("Duplicate SKU");
     }
 
 }
