@@ -1,8 +1,8 @@
 package com.itv.checkout.domain.model.impl;
 
 import com.itv.checkout.domain.model.Pricing;
-
-import java.util.StringJoiner;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class PricingImpl implements Pricing {
 
@@ -27,9 +27,6 @@ public class PricingImpl implements Pricing {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", PricingImpl.class.getSimpleName() + "[", "]")
-                .add("eligibleUnits=" + eligibleUnits)
-                .add("priceInPence=" + priceInPence)
-                .toString();
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

@@ -2,8 +2,8 @@ package com.itv.checkout.domain.model.impl;
 
 import com.itv.checkout.domain.model.Pricing;
 import com.itv.checkout.domain.model.PricingRule;
-
-import java.util.StringJoiner;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * Prices the requested units based on how many times they can be evenly divided by the eligibleQuantity
@@ -12,31 +12,28 @@ import java.util.StringJoiner;
  */
 public class UnitCountPricingRule implements PricingRule {
 
-    private final int eligibleQuantity;
-    private final int pricePerEligibleQuantity;
+    private final int forQuantityOfUnits;
+    private final int priceInPence;
 
-    public UnitCountPricingRule(final int eligibleQuantity,
-                                final int pricePerEligibleQuantity) {
-        this.eligibleQuantity = eligibleQuantity;
-        this.pricePerEligibleQuantity = pricePerEligibleQuantity;
+    public UnitCountPricingRule(final int forQuantityOfUnits,
+                                final int priceInPence) {
+        this.forQuantityOfUnits = forQuantityOfUnits;
+        this.priceInPence = priceInPence;
     }
 
     @Override
     public Pricing getPricing(final int requestedUnits) {
-        if (eligibleQuantity == 0) {
+        if (forQuantityOfUnits == 0) {
             return new PricingImpl(0, 0);
         }
-        final int ineligibleUnits = requestedUnits % eligibleQuantity;
+        final int ineligibleUnits = requestedUnits % forQuantityOfUnits;
         final int eligibleUnits = requestedUnits - ineligibleUnits;
-        final int priceInPence = pricePerEligibleQuantity * eligibleUnits / eligibleQuantity;
+        final int priceInPence = this.priceInPence * eligibleUnits / forQuantityOfUnits;
         return new PricingImpl(eligibleUnits, priceInPence);
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", UnitCountPricingRule.class.getSimpleName() + "[", "]")
-                .add("eligibleQuantity=" + eligibleQuantity)
-                .add("pricePerEligibleQuantity=" + pricePerEligibleQuantity)
-                .toString();
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }
