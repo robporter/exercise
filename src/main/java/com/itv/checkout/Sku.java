@@ -7,4 +7,8 @@ public class Sku {
     public Sku(final String code) {
         this.code = code;
     }
+
+    public String getCode() {
+        return null;
+    }
 }
