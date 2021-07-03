@@ -56,6 +56,10 @@ class UnitCountPricingRuleTest {
                     Arguments.of(0,
                                  new UnitCountPricingRule(2, 10),
                                  new PricingImpl(0, 0)
+                    ),
+                    Arguments.of(10,
+                                 new UnitCountPricingRule(0, 10),
+                                 new PricingImpl(0, 0)
                     )
             );
         }
