@@ -16,6 +16,9 @@ public class UnitCountPricingRule implements PricingRule {
 
     @Override
     public Pricing getPricing(final int quantity) {
+        if (quantity % eligibleQuantity == 0) {
+            return new PricingImpl(quantity, pricePerEligibleQuantity * quantity / eligibleQuantity);
+        }
         return new PricingImpl(quantity, pricePerEligibleQuantity);
     }
 }
