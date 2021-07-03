@@ -20,6 +20,6 @@ public class InventoryService {
     }
 
     public Sku findSkuByCode(final String code) {
-        return null;
+        return inventoryRepository.findSkuByCode(code).get();
     }
 }
