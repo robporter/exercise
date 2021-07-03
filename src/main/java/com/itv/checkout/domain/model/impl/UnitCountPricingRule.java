@@ -15,13 +15,10 @@ public class UnitCountPricingRule implements PricingRule {
     }
 
     @Override
-    public Pricing getPricing(final int quantity) {
-        if (quantity % eligibleQuantity == 0) {
-            return new PricingImpl(quantity, pricePerEligibleQuantity * quantity / eligibleQuantity);
-        } else if (quantity % eligibleQuantity != 0) {
-            final int eligibleUnits = quantity - quantity % eligibleQuantity;
-            return new PricingImpl(eligibleUnits, pricePerEligibleQuantity * eligibleUnits / eligibleQuantity);
-        }
-        return new PricingImpl(0, 0);
+    public Pricing getPricing(final int units) {
+        final int ineligibleUnits = units % eligibleQuantity;
+        final int eligibleUnits = units - ineligibleUnits;
+        final int priceInPence = pricePerEligibleQuantity * eligibleUnits / eligibleQuantity;
+        return new PricingImpl(eligibleUnits, priceInPence);
     }
 }
