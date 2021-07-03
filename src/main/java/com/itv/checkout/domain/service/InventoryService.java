@@ -18,4 +18,8 @@ public class InventoryService {
         }
         inventoryRepository.store(sku);
     }
+
+    public Sku findSkuByCode(final String code) {
+        return null;
+    }
 }
