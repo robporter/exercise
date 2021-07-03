@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -36,13 +37,14 @@ public class InventoryServiceTest {
     }
 
     @Test
-    void addSkuPreventsDuplicates() {
+    void addSkuDoesNotAddDuplicates() {
 
         final Sku sku = new Sku("A");
         given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(Optional.of(sku));
 
-        underTest.addSku(sku);
+        assertThrows(RuntimeException.class, () -> underTest.addSku(sku));
 
         verify(inventoryRepository, never()).store(sku);
     }
+
 }
