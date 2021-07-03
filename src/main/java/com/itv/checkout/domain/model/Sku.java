@@ -9,6 +9,6 @@ public class Sku {
     }
 
     public String getCode() {
-        return null;
+        return code;
     }
 }
