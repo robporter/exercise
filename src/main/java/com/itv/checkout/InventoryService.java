@@ -10,7 +10,7 @@ public class InventoryService {
 
     public void addSku(final Sku sku) {
         if (inventoryRepository.findSkuByCode(sku.getCode()).isPresent()) {
-            throw new RuntimeException();
+            throw new DuplicateSKUException();
         }
         inventoryRepository.store(sku);
     }
