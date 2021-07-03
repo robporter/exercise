@@ -3,6 +3,11 @@ package com.itv.checkout.domain.model.impl;
 import com.itv.checkout.domain.model.Pricing;
 import com.itv.checkout.domain.model.PricingRule;
 
+/**
+ * Prices the requested units based on how many times they can be evenly divided by the eligibleQuantity
+ * and multiplies that value by the pricePerEligibleQuantity.<br>
+ * Any remaining requested units are not included in the eligibleUnits of the returned Pricing.
+ */
 public class UnitCountPricingRule implements PricingRule {
 
     private final int eligibleQuantity;
