@@ -5,9 +5,10 @@ import com.itv.checkout.persistence.entity.UnitCountPricingRuleEntity;
 
 public class PricingRuleConverter {
 
-    public UnitCountPricingRuleEntity toEntity(final UnitCountPricingRule unitCountPricingRule) {
+    public UnitCountPricingRuleEntity toEntity(final String skuCode,
+                                               final UnitCountPricingRule unitCountPricingRule) {
         return new UnitCountPricingRuleEntity(
-                unitCountPricingRule.getPriceInPence(),
+                skuCode, unitCountPricingRule.getPriceInPence(),
                 unitCountPricingRule.getUnitCount()
         );
     }
