@@ -52,17 +52,4 @@ public class InventoryServiceTest {
         assertThat(actual.getMessage()).isEqualTo("Duplicate SKU");
     }
 
-    @Test
-    void findBySkuCodeReturnsSku() {
-        final Sku sku = new Sku("B");
-        final Optional<Sku> expectedSku = Optional.of(sku);
-        given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(expectedSku);
-
-        final Optional<Sku> actual = underTest.findSkuByCode(sku.getCode());
-
-        assertThat(actual).isSameAs(expectedSku);
-    }
-
-
-
 }
