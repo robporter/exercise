@@ -18,7 +18,7 @@ class PricingRuleConverterTest {
 
     @Test
     void toEntity() {
-        final UnitCountPricingRule unitCountPricingRule = new UnitCountPricingRule(1, 2);
+        final UnitCountPricingRule unitCountPricingRule = new UnitCountPricingRule(3, 2);
 
         final UnitCountPricingRuleEntity actual = underTest.toEntity(unitCountPricingRule);
 
@@ -26,6 +26,24 @@ class PricingRuleConverterTest {
                 new UnitCountPricingRuleEntity(
                         unitCountPricingRule.getPriceInPence(),
                         unitCountPricingRule.getUnitCount()
-                ));
+                )
+        );
+    }
+
+    @Test
+    void toDomain() {
+        final UnitCountPricingRuleEntity unitCountPricingRuleEntity = new UnitCountPricingRuleEntity(
+                3,
+                2
+        );
+
+        final UnitCountPricingRule actual = underTest.toDomain(unitCountPricingRuleEntity);
+
+        assertThat(actual).usingRecursiveComparison().isEqualTo(
+                new UnitCountPricingRuleEntity(
+                        unitCountPricingRuleEntity.getPriceInPence(),
+                        unitCountPricingRuleEntity.getUnitCount()
+                )
+        );
     }
 }
