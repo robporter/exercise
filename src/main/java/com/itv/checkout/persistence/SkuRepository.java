@@ -4,7 +4,7 @@ import com.itv.checkout.persistence.entity.SkuEntity;
 
 import java.util.Optional;
 
-public interface InventoryRepository {
+public interface SkuRepository {
 
     void store(final SkuEntity skuEntity);
 

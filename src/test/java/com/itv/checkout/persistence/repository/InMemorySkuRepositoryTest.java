@@ -11,15 +11,15 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
-class InMemoryInventoryRepositoryTest {
+class InMemorySkuRepositoryTest {
 
-    private InMemoryInventoryRepository underTest;
+    private InMemorySkuRepository underTest;
     private List<SkuEntity> inventory;
 
     @BeforeEach
     void beforeEach() {
         inventory = new ArrayList<>();
-        underTest = new InMemoryInventoryRepository(inventory);
+        underTest = new InMemorySkuRepository(inventory);
     }
 
     @Test

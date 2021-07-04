@@ -3,7 +3,7 @@ package com.itv.checkout.domain.service;
 import com.itv.checkout.domain.converter.SkuConverter;
 import com.itv.checkout.domain.exception.DuplicateSKUException;
 import com.itv.checkout.domain.model.Sku;
-import com.itv.checkout.persistence.InventoryRepository;
+import com.itv.checkout.persistence.SkuRepository;
 import com.itv.checkout.persistence.entity.SkuEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,14 +27,14 @@ public class InventoryServiceTest {
     private InventoryService underTest;
 
     @Mock
-    private InventoryRepository inventoryRepository;
+    private SkuRepository skuRepository;
 
     @Mock
     private SkuConverter skuConverter;
 
     @BeforeEach
     void beforeEach() {
-        underTest = new InventoryService(inventoryRepository, skuConverter);
+        underTest = new InventoryService(skuRepository, skuConverter);
     }
 
     @Test
@@ -46,18 +46,18 @@ public class InventoryServiceTest {
 
         underTest.addSku(sku);
 
-        verify(inventoryRepository).store(skuEntity);
+        verify(skuRepository).store(skuEntity);
     }
 
     @Test
     void addSkuDoesNotAddDuplicates() {
 
         final Sku sku = new Sku("A", 2);
-        given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(Optional.of(mock(SkuEntity.class)));
+        given(skuRepository.findSkuByCode(sku.getCode())).willReturn(Optional.of(mock(SkuEntity.class)));
 
         final DuplicateSKUException actual = assertThrows(DuplicateSKUException.class, () -> underTest.addSku(sku));
 
-        verify(inventoryRepository, never()).store(any());
+        verify(skuRepository, never()).store(any());
         assertThat(actual.getMessage()).isEqualTo("Duplicate SKU");
     }
 
