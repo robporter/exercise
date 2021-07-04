@@ -21,6 +21,8 @@ public class InMemoryInventoryRepository implements InventoryRepository {
 
     @Override
     public Optional<SkuEntity> findSkuByCode(final String code) {
-        return inventory.stream().filter(skuEntity -> skuEntity.getCode().equals(code)).findAny();
+        return inventory.stream()
+                .filter(skuEntity -> skuEntity.getCode().equals(code))
+                .findAny();
     }
 }
