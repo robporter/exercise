@@ -53,7 +53,7 @@ public class InventoryServiceTest {
     void addSkuDoesNotAddDuplicates() {
 
         final Sku sku = new Sku("A");
-        given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(Optional.of(sku));
+        given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(Optional.of(mock(SkuEntity.class)));
 
         final DuplicateSKUException actual = assertThrows(DuplicateSKUException.class, () -> underTest.addSku(sku));
 
