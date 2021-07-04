@@ -15,10 +15,6 @@ public class CartItem {
         return quantity;
     }
 
-    public void setQuantity(final int quantity) {
-        this.quantity = quantity;
-    }
-
     public String getSkuCode() {
         return skuCode;
     }
