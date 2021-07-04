@@ -1,8 +1,10 @@
 package com.itv.checkout.domain.service;
 
+import com.itv.checkout.domain.converter.SkuConverter;
 import com.itv.checkout.domain.exception.DuplicateSKUException;
 import com.itv.checkout.domain.model.Sku;
 import com.itv.checkout.persistence.InventoryRepository;
+import com.itv.checkout.persistence.entity.SkuEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +15,9 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
@@ -25,19 +29,24 @@ public class InventoryServiceTest {
     @Mock
     private InventoryRepository inventoryRepository;
 
+    @Mock
+    private SkuConverter skuConverter;
+
     @BeforeEach
     void beforeEach() {
-        underTest = new InventoryService(inventoryRepository);
+        underTest = new InventoryService(inventoryRepository, skuConverter);
     }
 
     @Test
     void addSkuStoresSku() {
 
         final Sku sku = new Sku("A");
+        final SkuEntity skuEntity = mock(SkuEntity.class);
+        given(skuConverter.toEntity(sku)).willReturn(skuEntity);
 
         underTest.addSku(sku);
 
-        verify(inventoryRepository).store(sku);
+        verify(inventoryRepository).store(skuEntity);
     }
 
     @Test
@@ -48,7 +57,7 @@ public class InventoryServiceTest {
 
         final DuplicateSKUException actual = assertThrows(DuplicateSKUException.class, () -> underTest.addSku(sku));
 
-        verify(inventoryRepository, never()).store(sku);
+        verify(inventoryRepository, never()).store(any());
         assertThat(actual.getMessage()).isEqualTo("Duplicate SKU");
     }
 
