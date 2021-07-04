@@ -23,7 +23,7 @@ class InMemorySkuRepositoryTest {
     }
 
     @Test
-    void storeUpdatesInventory() {
+    void stores() {
         final SkuEntity skuEntity = mock(SkuEntity.class);
 
         underTest.store(skuEntity);
@@ -32,7 +32,7 @@ class InMemorySkuRepositoryTest {
     }
 
     @Test
-    void findBySkuCodeFindsInInventory() {
+    void findsBySkyCode() {
 
         final SkuEntity skuEntityToFind = new SkuEntity("A");
         final SkuEntity anotherSkuEntity = new SkuEntity("B");

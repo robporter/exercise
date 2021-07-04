@@ -1,5 +1,6 @@
 package com.itv.checkout.domain.converter;
 
+import com.itv.checkout.domain.model.Pricing;
 import com.itv.checkout.domain.model.rule.UnitCountPricingRule;
 import com.itv.checkout.persistence.entity.UnitCountPricingRuleEntity;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,26 +8,26 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PricingRuleConverterTest {
+class UnitCountPricingRuleConverterTest {
 
-    private PricingRuleConverter underTest;
+    private UnitCountPricingRuleConverter underTest;
 
     @BeforeEach
     void beforeEach() {
-        underTest = new PricingRuleConverter();
+        underTest = new UnitCountPricingRuleConverter();
     }
 
     @Test
     void toEntity() {
-        final UnitCountPricingRule unitCountPricingRule = new UnitCountPricingRule(2, 3);
+        final Pricing pricing = new Pricing(3, 2);
 
-        final UnitCountPricingRuleEntity actual = underTest.toEntity("A", unitCountPricingRule);
+        final UnitCountPricingRuleEntity actual = underTest.toEntity("A", pricing);
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(
                 new UnitCountPricingRuleEntity(
                         "A",
-                        unitCountPricingRule.getPriceInPence(),
-                        unitCountPricingRule.getUnitCount()
+                        pricing.getEligibleUnits(),
+                        pricing.getSummedPriceInPence()
                 )
         );
     }
@@ -35,16 +36,14 @@ class PricingRuleConverterTest {
     void toDomain() {
         final UnitCountPricingRuleEntity unitCountPricingRuleEntity = new UnitCountPricingRuleEntity(
                 "A",
-                3,
-                2
+                2, 3
         );
 
         final UnitCountPricingRule actual = underTest.toDomain(unitCountPricingRuleEntity);
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(
                 new UnitCountPricingRule(
-                        unitCountPricingRuleEntity.getPriceInPence(),
-                        unitCountPricingRuleEntity.getUnitCount()
+                        unitCountPricingRuleEntity.getUnitCount(), unitCountPricingRuleEntity.getPriceInPence()
                 )
         );
     }

@@ -3,30 +3,25 @@ package com.itv.checkout.domain.model;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+/**
+ * Represents details of a price for a quantity of units.
+ */
 public class Pricing {
 
     final int eligibleUnits;
     final int priceInPence;
 
     public Pricing(final int eligibleUnits,
-                   final int priceInPence) {
+                   final int summedPriceInPence) {
         this.eligibleUnits = eligibleUnits;
-        this.priceInPence = priceInPence;
+        this.priceInPence = summedPriceInPence;
     }
 
-    /**
-     *
-     * @return the number of units from those requested that are eligible for this price
-     */
-    public int eligibleUnits() {
+    public int getEligibleUnits() {
         return eligibleUnits;
     }
 
-    /**
-     *
-     * @return the summed price in pence that the eligible units are priced at
-     */
-    public int priceInPence() {
+    public int getSummedPriceInPence() {
         return priceInPence;
     }
 

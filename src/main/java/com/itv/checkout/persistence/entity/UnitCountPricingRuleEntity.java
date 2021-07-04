@@ -7,11 +7,11 @@ public class UnitCountPricingRuleEntity {
     private final int unitCount;
 
     public UnitCountPricingRuleEntity(final String skuCode,
-                                      final int priceInPence,
-                                      final int unitCount) {
+                                      final int eligibleUnits,
+                                      final int summedPriceInPence) {
         this.skuCode = skuCode;
-        this.priceInPence = priceInPence;
-        this.unitCount = unitCount;
+        this.priceInPence = summedPriceInPence;
+        this.unitCount = eligibleUnits;
     }
 
     public int getPriceInPence() {
