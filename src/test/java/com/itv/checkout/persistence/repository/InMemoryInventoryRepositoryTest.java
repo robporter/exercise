@@ -40,7 +40,7 @@ class InMemoryInventoryRepositoryTest {
         inventory.add(anotherSkuEntity);
         inventory.add(skuEntityToFind);
 
-        final Optional<SkuEntity> actual = underTest.findSkuByCode("A");
+        final Optional<SkuEntity> actual = underTest.findSkuByCode(skuEntityToFind.getCode());
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(Optional.of(skuEntityToFind));
     }
