@@ -1,4 +1,4 @@
-package com.itv.checkout.domain.model.impl;
+package com.itv.checkout.domain.model.rule;
 
 import com.itv.checkout.domain.model.Pricing;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -31,35 +31,35 @@ class UnitCountPricingRuleTest {
             return Stream.of(
                     Arguments.of(1,
                                  new UnitCountPricingRule(1, 2),
-                                 new PricingImpl(1, 2)
+                                 new Pricing(1, 2)
                     ),
                     Arguments.of(2,
                                  new UnitCountPricingRule(1, 3),
-                                 new PricingImpl(2, 6)
+                                 new Pricing(2, 6)
                     ),
                     Arguments.of(3,
                                  new UnitCountPricingRule(1, 11),
-                                 new PricingImpl(3, 33)
+                                 new Pricing(3, 33)
                     ),
                     Arguments.of(3,
                                  new UnitCountPricingRule(2, 10),
-                                 new PricingImpl(2, 10)
+                                 new Pricing(2, 10)
                     ),
                     Arguments.of(5,
                                  new UnitCountPricingRule(2, 10),
-                                 new PricingImpl(4, 20)
+                                 new Pricing(4, 20)
                     ),
                     Arguments.of(6,
                                  new UnitCountPricingRule(2, 10),
-                                 new PricingImpl(6, 30)
+                                 new Pricing(6, 30)
                     ),
                     Arguments.of(0,
                                  new UnitCountPricingRule(2, 10),
-                                 new PricingImpl(0, 0)
+                                 new Pricing(0, 0)
                     ),
                     Arguments.of(10,
                                  new UnitCountPricingRule(0, 10),
-                                 new PricingImpl(0, 0)
+                                 new Pricing(0, 0)
                     )
             );
         }

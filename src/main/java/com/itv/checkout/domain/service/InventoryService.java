@@ -2,7 +2,7 @@ package com.itv.checkout.domain.service;
 
 import com.itv.checkout.domain.exception.DuplicateSKUException;
 import com.itv.checkout.domain.model.Sku;
-import com.itv.checkout.domain.repository.InventoryRepository;
+import com.itv.checkout.persistence.repository.InventoryRepository;
 
 import java.util.Optional;
 

@@ -2,7 +2,7 @@ package com.itv.checkout.domain.service;
 
 import com.itv.checkout.domain.exception.DuplicateSKUException;
 import com.itv.checkout.domain.model.Sku;
-import com.itv.checkout.domain.repository.InventoryRepository;
+import com.itv.checkout.persistence.repository.InventoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -53,7 +53,7 @@ public class InventoryServiceTest {
     }
 
     @Test
-    void findBySkuCode() {
+    void findBySkuCodeReturnsSku() {
         final Sku sku = new Sku("B");
         final Optional<Sku> expectedSku = Optional.of(sku);
         given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(expectedSku);
@@ -62,5 +62,7 @@ public class InventoryServiceTest {
 
         assertThat(actual).isSameAs(expectedSku);
     }
+
+
 
 }
