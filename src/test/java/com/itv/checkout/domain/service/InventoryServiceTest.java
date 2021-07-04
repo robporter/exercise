@@ -2,7 +2,7 @@ package com.itv.checkout.domain.service;
 
 import com.itv.checkout.domain.exception.DuplicateSKUException;
 import com.itv.checkout.domain.model.Sku;
-import com.itv.checkout.persistence.repository.InventoryRepository;
+import com.itv.checkout.persistence.InventoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

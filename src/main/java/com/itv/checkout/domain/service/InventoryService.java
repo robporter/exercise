@@ -2,7 +2,7 @@ package com.itv.checkout.domain.service;
 
 import com.itv.checkout.domain.exception.DuplicateSKUException;
 import com.itv.checkout.domain.model.Sku;
-import com.itv.checkout.persistence.repository.InventoryRepository;
+import com.itv.checkout.persistence.InventoryRepository;
 
 public class InventoryService {
 
@@ -19,4 +19,8 @@ public class InventoryService {
         inventoryRepository.store(sku);
     }
 
+    public void addUnitCountPricingRule(final String skuCode,
+                                        final int unitQuantity,
+                                        final int priceInPence) {
+    }
 }
