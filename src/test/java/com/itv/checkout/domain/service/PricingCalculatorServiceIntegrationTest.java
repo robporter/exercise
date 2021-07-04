@@ -60,6 +60,7 @@ class PricingCalculatorServiceIntegrationTest {
         assertThat(actual).isEqualTo(500);
     }
 
+
     @Test
     void totalUsesApplicablePricingRule() {
 
@@ -111,5 +112,32 @@ class PricingCalculatorServiceIntegrationTest {
         final int actual = underTest.total(items);
 
         assertThat(actual).isEqualTo(862);
+    }
+
+    @Test
+    /*
+     * 1 unit: 15
+     * rule 1: 100 pence for 9
+     * rule 2: 90 pence for 14
+     *
+     * Requested: 28 + 9 + 1
+     * Breakdown: 28 for 180 rule 2, 9 for 100 rule 1, 1 for 15 default rule
+     * Total: 295
+     */
+    void usesAllRulesAndDefaultPriceToGiveBestValueIgnoresZeroRequested() {
+
+        inventoryService.addSku(new Sku("A", 15));
+        inventoryService.addSku(new Sku("B", 200));
+        inventoryService.addPricingRule("A", new UnitPricing(9, 100));
+        inventoryService.addPricingRule("A", new UnitPricing(14, 90));
+
+        final List<CartItem> items = Arrays.asList(
+                new CartItem("A", 38),
+                new CartItem("B", 0)
+        );
+
+        final int actual = underTest.total(items);
+
+        assertThat(actual).isEqualTo(295);
     }
 }

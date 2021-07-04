@@ -27,6 +27,15 @@ to box myself into not being able to provide that.
   from the calculation logic.
 - Target JDK is 1.8 as the PDF asks for a demonstration of Java 8 streams.
 
+### Pricing rule example:
+
+1 unit: 15<br>
+rule 1: 100 pence for 9<bbr>
+rule 2: 90 pence for 14<br>
+<br>
+Requested: 28 + 9 + 1<br>
+Breakdown: 28 for 180 rule 2, 9 for 100 rule 1, 1 for 15 default rule<br>
+Total: 295
 
 ### Notes for exercise as supplied
 - Do NOT put everything in one class!!!
