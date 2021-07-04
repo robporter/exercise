@@ -13,24 +13,32 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class UnitCountPricingRule implements PricingRule {
 
-    private final int forQuantityOfUnits;
+    private final int unitCount;
     private final int priceInPence;
 
-    public UnitCountPricingRule(final int forQuantityOfUnits,
+    public UnitCountPricingRule(final int unitCount,
                                 final int priceInPence) {
-        this.forQuantityOfUnits = forQuantityOfUnits;
+        this.unitCount = unitCount;
         this.priceInPence = priceInPence;
     }
 
     @Override
-    public Pricing getPricing(final int requestedUnits) {
-        if (forQuantityOfUnits == 0) {
+    public Pricing getPricingFor(final int requestedUnits) {
+        if (unitCount == 0) {
             return new Pricing(0, 0);
         }
-        final int ineligibleUnits = requestedUnits % forQuantityOfUnits;
+        final int ineligibleUnits = requestedUnits % unitCount;
         final int eligibleUnits = requestedUnits - ineligibleUnits;
-        final int priceInPence = this.priceInPence * eligibleUnits / forQuantityOfUnits;
+        final int priceInPence = this.priceInPence * eligibleUnits / unitCount;
         return new Pricing(eligibleUnits, priceInPence);
+    }
+
+    public int getUnitCount() {
+        return unitCount;
+    }
+
+    public int getPriceInPence() {
+        return priceInPence;
     }
 
     @Override

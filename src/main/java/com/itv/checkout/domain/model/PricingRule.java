@@ -7,5 +7,5 @@ public interface PricingRule {
      * @return Pricing containing information about the number of units this rule was applicable for
      * and the total price for those units covered by this rule
      */
-    Pricing getPricing(final int requestedUnits);
+    Pricing getPricingFor(final int requestedUnits);
 }

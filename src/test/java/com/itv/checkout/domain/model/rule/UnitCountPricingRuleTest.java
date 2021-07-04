@@ -19,7 +19,7 @@ class UnitCountPricingRuleTest {
                     final UnitCountPricingRule underTest,
                     final Pricing expectedPricing) {
 
-        final Pricing actual = underTest.getPricing(requestedUnits);
+        final Pricing actual = underTest.getPricingFor(requestedUnits);
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expectedPricing);
     }
