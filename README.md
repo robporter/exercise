@@ -18,6 +18,8 @@ from unit tests. Would like to have a unit test for this class.
 
 ### Other things to note:
 
+- Tried to keep things very pure Java, didn't know if Lombok would deviate from that so didn't use that
+- The exercise notes mention entities, but I've not included any real database related code, just some in memory repositories
 - The calculation attempts to handle multiple pricing rules as I wasn't sure if this was a requirement, and I didn't want 
 to box myself into not being able to provide that.
 - There's an interface for CalculatePricing, this would be to allow other pricing rule implementations
