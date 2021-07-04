@@ -1,7 +1,7 @@
 package com.itv.checkout.domain.model.rule;
 
 import com.itv.checkout.domain.model.CalculatePricing;
-import com.itv.checkout.domain.model.Pricing;
+import com.itv.checkout.domain.model.UnitCountPricing;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -23,22 +23,14 @@ public class UnitCountPricingRule implements CalculatePricing {
     }
 
     @Override
-    public Pricing calculatePricingFor(final int requestedUnits) {
+    public UnitCountPricing calculatePricingFor(final int requestedUnits) {
         if (unitCount == 0) {
-            return new Pricing(0, 0);
+            return new UnitCountPricing(0, 0);
         }
         final int ineligibleUnits = requestedUnits % unitCount;
         final int eligibleUnits = requestedUnits - ineligibleUnits;
         final int priceInPence = this.priceInPence * eligibleUnits / unitCount;
-        return new Pricing(eligibleUnits, priceInPence);
-    }
-
-    public int getUnitCount() {
-        return unitCount;
-    }
-
-    public int getPriceInPence() {
-        return priceInPence;
+        return new UnitCountPricing(eligibleUnits, priceInPence);
     }
 
     @Override

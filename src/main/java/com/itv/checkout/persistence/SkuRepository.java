@@ -8,5 +8,5 @@ public interface SkuRepository {
 
     void store(final SkuEntity skuEntity);
 
-    Optional<SkuEntity> findSkuByCode(final String code);
+    Optional<SkuEntity> findSkuByCode(final String skuCode);
 }

@@ -1,6 +1,6 @@
 package com.itv.checkout.domain.converter;
 
-import com.itv.checkout.domain.model.Pricing;
+import com.itv.checkout.domain.model.UnitCountPricing;
 import com.itv.checkout.domain.model.rule.UnitCountPricingRule;
 import com.itv.checkout.persistence.entity.UnitCountPricingRuleEntity;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,15 +19,15 @@ class UnitCountPricingRuleConverterTest {
 
     @Test
     void toEntity() {
-        final Pricing pricing = new Pricing(3, 2);
+        final UnitCountPricing unitCountPricing = new UnitCountPricing(3, 2);
 
-        final UnitCountPricingRuleEntity actual = underTest.toEntity("A", pricing);
+        final UnitCountPricingRuleEntity actual = underTest.toEntity("A", unitCountPricing);
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(
                 new UnitCountPricingRuleEntity(
                         "A",
-                        pricing.getEligibleUnits(),
-                        pricing.getSummedPriceInPence()
+                        unitCountPricing.getEligibleUnits(),
+                        unitCountPricing.getSummedPriceInPence()
                 )
         );
     }

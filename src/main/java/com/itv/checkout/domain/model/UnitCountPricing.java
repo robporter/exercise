@@ -6,15 +6,15 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * Represents details of a price for a quantity of units.
  */
-public class Pricing {
+public class UnitCountPricing {
 
-    final int eligibleUnits;
-    final int priceInPence;
+    private final int eligibleUnits;
+    private final int summedPriceInPence;
 
-    public Pricing(final int eligibleUnits,
-                   final int summedPriceInPence) {
+    public UnitCountPricing(final int eligibleUnits,
+                            final int summedPriceInPence) {
         this.eligibleUnits = eligibleUnits;
-        this.priceInPence = summedPriceInPence;
+        this.summedPriceInPence = summedPriceInPence;
     }
 
     public int getEligibleUnits() {
@@ -22,11 +22,12 @@ public class Pricing {
     }
 
     public int getSummedPriceInPence() {
-        return priceInPence;
+        return summedPriceInPence;
     }
 
     @Override
     public String toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
+
 }

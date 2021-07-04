@@ -1,23 +1,24 @@
 package com.itv.checkout.domain.converter;
 
-import com.itv.checkout.domain.model.Pricing;
+import com.itv.checkout.domain.model.UnitCountPricing;
 import com.itv.checkout.domain.model.rule.UnitCountPricingRule;
 import com.itv.checkout.persistence.entity.UnitCountPricingRuleEntity;
 
 public class UnitCountPricingRuleConverter {
 
     public UnitCountPricingRuleEntity toEntity(final String skuCode,
-                                               final Pricing pricing) {
+                                               final UnitCountPricing unitCountPricing) {
         return new UnitCountPricingRuleEntity(
                 skuCode,
-                pricing.getEligibleUnits(),
-                pricing.getSummedPriceInPence()
+                unitCountPricing.getEligibleUnits(),
+                unitCountPricing.getSummedPriceInPence()
         );
     }
 
     public UnitCountPricingRule toDomain(final UnitCountPricingRuleEntity unitCountPricingRuleEntity) {
         return new UnitCountPricingRule(
-                unitCountPricingRuleEntity.getUnitCount(), unitCountPricingRuleEntity.getPriceInPence()
+                unitCountPricingRuleEntity.getUnitCount(),
+                unitCountPricingRuleEntity.getPriceInPence()
         );
     }
 }

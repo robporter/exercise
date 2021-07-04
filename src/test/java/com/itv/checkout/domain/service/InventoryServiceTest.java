@@ -3,8 +3,8 @@ package com.itv.checkout.domain.service;
 import com.itv.checkout.domain.converter.SkuConverter;
 import com.itv.checkout.domain.converter.UnitCountPricingRuleConverter;
 import com.itv.checkout.domain.exception.DuplicateSKUException;
-import com.itv.checkout.domain.model.Pricing;
 import com.itv.checkout.domain.model.Sku;
+import com.itv.checkout.domain.model.UnitCountPricing;
 import com.itv.checkout.persistence.PricingRuleRepository;
 import com.itv.checkout.persistence.SkuRepository;
 import com.itv.checkout.persistence.entity.SkuEntity;
@@ -54,10 +54,10 @@ public class InventoryServiceTest {
 
         final Sku sku = new Sku("A", 2);
         final SkuEntity skuEntity = mock(SkuEntity.class);
-        final Pricing unitCountPricingRule = new Pricing(1, sku.getPriceInPence());
+        final UnitCountPricing unitCountUnitCountPricingRule = new UnitCountPricing(1, sku.getPriceInPence());
         final UnitCountPricingRuleEntity unitCountPricingRuleEntity = mock(UnitCountPricingRuleEntity.class);
         given(skuConverter.toEntity(sku)).willReturn(skuEntity);
-        given(pricingRuleConverter.toEntity(eq(sku.getCode()), refEq(unitCountPricingRule))).willReturn(unitCountPricingRuleEntity);
+        given(pricingRuleConverter.toEntity(eq(sku.getCode()), refEq(unitCountUnitCountPricingRule))).willReturn(unitCountPricingRuleEntity);
 
         underTest.addSku(sku);
 
@@ -80,11 +80,11 @@ public class InventoryServiceTest {
     @Test
     void addPricingRule() {
         final Sku sku = new Sku("A", 2);
-        final Pricing pricing = new Pricing(20, 100);
+        final UnitCountPricing unitCountPricing = new UnitCountPricing(20, 100);
         final UnitCountPricingRuleEntity expected = new UnitCountPricingRuleEntity(sku.getCode(), 100, 20);
-        given(pricingRuleConverter.toEntity(sku.getCode(), pricing)).willReturn(expected);
+        given(pricingRuleConverter.toEntity(sku.getCode(), unitCountPricing)).willReturn(expected);
 
-        underTest.addPricingRule(sku.getCode(), pricing);
+        underTest.addPricingRule(sku.getCode(), unitCountPricing);
 
         verify(pricingRuleRepository).store(expected);
     }

@@ -1,6 +1,6 @@
 package com.itv.checkout.domain.model.rule;
 
-import com.itv.checkout.domain.model.Pricing;
+import com.itv.checkout.domain.model.UnitCountPricing;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,9 +17,9 @@ class UnitCountPricingRuleTest {
     @ArgumentsSource(PriceFixtures.class)
     void getPricing(final int requestedUnits,
                     final UnitCountPricingRule underTest,
-                    final Pricing expectedPricing) {
+                    final UnitCountPricing expectedPricing) {
 
-        final Pricing actual = underTest.calculatePricingFor(requestedUnits);
+        final UnitCountPricing actual = underTest.calculatePricingFor(requestedUnits);
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expectedPricing);
     }
@@ -31,35 +31,35 @@ class UnitCountPricingRuleTest {
             return Stream.of(
                     Arguments.of(1,
                                  new UnitCountPricingRule(1, 2),
-                                 new Pricing(1, 2)
+                                 new UnitCountPricing(1, 2)
                     ),
                     Arguments.of(2,
                                  new UnitCountPricingRule(1, 3),
-                                 new Pricing(2, 6)
+                                 new UnitCountPricing(2, 6)
                     ),
                     Arguments.of(3,
                                  new UnitCountPricingRule(1, 11),
-                                 new Pricing(3, 33)
+                                 new UnitCountPricing(3, 33)
                     ),
                     Arguments.of(3,
                                  new UnitCountPricingRule(2, 10),
-                                 new Pricing(2, 10)
+                                 new UnitCountPricing(2, 10)
                     ),
                     Arguments.of(5,
                                  new UnitCountPricingRule(2, 10),
-                                 new Pricing(4, 20)
+                                 new UnitCountPricing(4, 20)
                     ),
                     Arguments.of(6,
                                  new UnitCountPricingRule(2, 10),
-                                 new Pricing(6, 30)
+                                 new UnitCountPricing(6, 30)
                     ),
                     Arguments.of(0,
                                  new UnitCountPricingRule(2, 10),
-                                 new Pricing(0, 0)
+                                 new UnitCountPricing(0, 0)
                     ),
                     Arguments.of(10,
                                  new UnitCountPricingRule(0, 10),
-                                 new Pricing(0, 0)
+                                 new UnitCountPricing(0, 0)
                     )
             );
         }

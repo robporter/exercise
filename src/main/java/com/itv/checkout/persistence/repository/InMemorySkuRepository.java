@@ -20,9 +20,9 @@ public class InMemorySkuRepository implements SkuRepository {
     }
 
     @Override
-    public Optional<SkuEntity> findSkuByCode(final String code) {
+    public Optional<SkuEntity> findSkuByCode(final String skuCode) {
         return inventory.stream()
-                .filter(skuEntity -> skuEntity.getCode().equals(code))
+                .filter(skuEntity -> skuEntity.getCode().equals(skuCode))
                 .findAny();
     }
 }
