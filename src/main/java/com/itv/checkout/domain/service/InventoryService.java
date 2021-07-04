@@ -5,7 +5,6 @@ import com.itv.checkout.domain.converter.UnitCountPricingRuleConverter;
 import com.itv.checkout.domain.exception.DuplicateSKUException;
 import com.itv.checkout.domain.model.Pricing;
 import com.itv.checkout.domain.model.Sku;
-import com.itv.checkout.domain.model.rule.UnitCountPricingRule;
 import com.itv.checkout.persistence.PricingRuleRepository;
 import com.itv.checkout.persistence.SkuRepository;
 
@@ -32,7 +31,7 @@ public class InventoryService {
         }
         pricingRuleRepository.store(pricingRuleConverter.toEntity(
                 sku.getCode(),
-                new Pricing(1, sku.getPriceInPence())
+                createPricingForOneUnit(sku)
         ));
         skuRepository.store(skuConverter.toEntity(sku));
     }
@@ -42,8 +41,8 @@ public class InventoryService {
         pricingRuleRepository.store(pricingRuleConverter.toEntity(skuCode, pricing));
     }
 
-    private UnitCountPricingRule singlePricingRule(final Sku sku) {
-        return new UnitCountPricingRule(1, sku.getPriceInPence());
+    private Pricing createPricingForOneUnit(final Sku sku) {
+        return new Pricing(1, sku.getPriceInPence());
     }
 
 }
