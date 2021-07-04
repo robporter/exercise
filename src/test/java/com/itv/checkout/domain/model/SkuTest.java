@@ -10,7 +10,7 @@ class SkuTest {
     @ParameterizedTest
     @ValueSource(strings = {"A", "B", "C", "D", "E"})
     void getCodeReturnsSkuCode(String expectedSkuCode) {
-        final Sku underTest = new Sku(expectedSkuCode);
+        final Sku underTest = new Sku(expectedSkuCode, 2);
 
         final String actual = underTest.getCode();
 

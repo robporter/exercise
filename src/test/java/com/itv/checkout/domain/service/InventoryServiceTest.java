@@ -40,7 +40,7 @@ public class InventoryServiceTest {
     @Test
     void addSkuStoresSku() {
 
-        final Sku sku = new Sku("A");
+        final Sku sku = new Sku("A", 2);
         final SkuEntity skuEntity = mock(SkuEntity.class);
         given(skuConverter.toEntity(sku)).willReturn(skuEntity);
 
@@ -52,7 +52,7 @@ public class InventoryServiceTest {
     @Test
     void addSkuDoesNotAddDuplicates() {
 
-        final Sku sku = new Sku("A");
+        final Sku sku = new Sku("A", 2);
         given(inventoryRepository.findSkuByCode(sku.getCode())).willReturn(Optional.of(mock(SkuEntity.class)));
 
         final DuplicateSKUException actual = assertThrows(DuplicateSKUException.class, () -> underTest.addSku(sku));
