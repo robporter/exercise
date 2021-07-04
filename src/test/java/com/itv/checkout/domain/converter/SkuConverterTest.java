@@ -2,7 +2,6 @@ package com.itv.checkout.domain.converter;
 
 import com.itv.checkout.domain.model.Sku;
 import com.itv.checkout.persistence.entity.SkuEntity;
-import com.itv.checkout.persistence.entity.UnitCountPricingRuleEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +11,6 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import java.util.stream.Stream;
 
-import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SkuConverterTest {
@@ -35,11 +33,7 @@ class SkuConverterTest {
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(
                 new SkuEntity(
-                        sku.getCode(),
-                        asList(new UnitCountPricingRuleEntity(
-                                sku.getPriceInPence(),
-                                1
-                        ))
+                        sku.getCode()
                 )
         );
     }

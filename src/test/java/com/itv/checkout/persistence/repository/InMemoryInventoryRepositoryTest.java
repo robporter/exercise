@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +34,8 @@ class InMemoryInventoryRepositoryTest {
     @Test
     void findBySkuCodeFindsInInventory() {
 
-        final SkuEntity skuEntityToFind = new SkuEntity("A", Collections.emptyList());
-        final SkuEntity anotherSkuEntity = new SkuEntity("B", Collections.emptyList());
+        final SkuEntity skuEntityToFind = new SkuEntity("A");
+        final SkuEntity anotherSkuEntity = new SkuEntity("B");
         inventory.add(anotherSkuEntity);
         inventory.add(skuEntityToFind);
 
