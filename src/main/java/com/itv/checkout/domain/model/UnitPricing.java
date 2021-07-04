@@ -6,13 +6,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * Represents details of a price for a quantity of units.
  */
-public class UnitCountPricing {
+public class UnitPricing {
 
     private final int eligibleUnits;
     private final int summedPriceInPence;
 
-    public UnitCountPricing(final int eligibleUnits,
-                            final int summedPriceInPence) {
+    public UnitPricing(final int eligibleUnits,
+                       final int summedPriceInPence) {
         this.eligibleUnits = eligibleUnits;
         this.summedPriceInPence = summedPriceInPence;
     }

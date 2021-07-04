@@ -1,10 +1,10 @@
 package com.itv.checkout.persistence;
 
-import com.itv.checkout.persistence.entity.UnitCountPricingRuleEntity;
+import com.itv.checkout.persistence.entity.PricingRuleEntity;
 
 import java.util.List;
 
 public interface PricingRuleRepository {
-    void store(final UnitCountPricingRuleEntity unitCountPricingRuleEntity);
-    List<UnitCountPricingRuleEntity> findRulesBySkuCode(final String skuCode);
+    void store(final PricingRuleEntity pricingRuleEntity);
+    List<PricingRuleEntity> findRulesBySkuCode(final String skuCode);
 }

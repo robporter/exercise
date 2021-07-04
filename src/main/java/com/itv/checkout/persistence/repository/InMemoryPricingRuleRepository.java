@@ -1,7 +1,7 @@
 package com.itv.checkout.persistence.repository;
 
 import com.itv.checkout.persistence.PricingRuleRepository;
-import com.itv.checkout.persistence.entity.UnitCountPricingRuleEntity;
+import com.itv.checkout.persistence.entity.PricingRuleEntity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,30 +10,30 @@ import java.util.Map;
 
 public class InMemoryPricingRuleRepository implements PricingRuleRepository {
 
-    private final Map<String, List<UnitCountPricingRuleEntity>> inventory;
+    private final Map<String, List<PricingRuleEntity>> inventory;
 
-    public InMemoryPricingRuleRepository(final Map<String, List<UnitCountPricingRuleEntity>> inventory) {
+    public InMemoryPricingRuleRepository(final Map<String, List<PricingRuleEntity>> inventory) {
         this.inventory = inventory;
     }
 
     @Override
-    public void store(final UnitCountPricingRuleEntity unitCountPricingRuleEntity) {
-        final List<UnitCountPricingRuleEntity> rules = findRulesForSkuCode(unitCountPricingRuleEntity.getSkuCode());
+    public void store(final PricingRuleEntity pricingRuleEntity) {
+        final List<PricingRuleEntity> rules = findRulesForSkuCode(pricingRuleEntity.getSkuCode());
         rules.stream()
-                .filter(entity -> entity.getUnitCount() == unitCountPricingRuleEntity.getUnitCount())
+                .filter(entity -> entity.getUnitCount() == pricingRuleEntity.getUnitCount())
                 .findAny()
                 .ifPresent(rules::remove);
-        rules.add(unitCountPricingRuleEntity);
-        inventory.put(unitCountPricingRuleEntity.getSkuCode(), rules);
+        rules.add(pricingRuleEntity);
+        inventory.put(pricingRuleEntity.getSkuCode(), rules);
     }
 
     @Override
-    public List<UnitCountPricingRuleEntity> findRulesBySkuCode(final String skuCode) {
+    public List<PricingRuleEntity> findRulesBySkuCode(final String skuCode) {
         return Collections.unmodifiableList(findRulesForSkuCode(skuCode));
     }
 
-    private List<UnitCountPricingRuleEntity> findRulesForSkuCode(final String skuCode) {
-        final List<UnitCountPricingRuleEntity> entities = inventory.get(skuCode);
+    private List<PricingRuleEntity> findRulesForSkuCode(final String skuCode) {
+        final List<PricingRuleEntity> entities = inventory.get(skuCode);
         if (entities == null) {
             return new ArrayList<>();
         }

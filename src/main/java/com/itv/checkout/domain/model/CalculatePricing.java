@@ -7,5 +7,5 @@ public interface CalculatePricing {
      * @return UnitCountPricing containing information about the number of units this rule was applicable for
      * and the summed price for those units covered by this calculation.
      */
-    UnitCountPricing calculatePricingFor(final int requestedUnits);
+    UnitPricing calculatePricingFor(final int requestedUnits);
 }
