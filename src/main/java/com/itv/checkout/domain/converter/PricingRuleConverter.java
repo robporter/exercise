@@ -14,8 +14,8 @@ public class PricingRuleConverter {
 
     public UnitCountPricingRule toDomain(final UnitCountPricingRuleEntity unitCountPricingRuleEntity) {
         return new UnitCountPricingRule(
-                unitCountPricingRuleEntity.getUnitCount(),
-                unitCountPricingRuleEntity.getPriceInPence()
+                unitCountPricingRuleEntity.getPriceInPence(),
+                unitCountPricingRuleEntity.getUnitCount()
         );
     }
 }

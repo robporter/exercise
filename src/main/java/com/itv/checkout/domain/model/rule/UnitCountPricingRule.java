@@ -16,8 +16,8 @@ public class UnitCountPricingRule implements PricingRule {
     private final int unitCount;
     private final int priceInPence;
 
-    public UnitCountPricingRule(final int unitCount,
-                                final int priceInPence) {
+    public UnitCountPricingRule(final int priceInPence,
+                                final int unitCount) {
         this.unitCount = unitCount;
         this.priceInPence = priceInPence;
     }

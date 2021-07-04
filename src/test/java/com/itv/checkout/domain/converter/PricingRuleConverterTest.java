@@ -18,7 +18,7 @@ class PricingRuleConverterTest {
 
     @Test
     void toEntity() {
-        final UnitCountPricingRule unitCountPricingRule = new UnitCountPricingRule(3, 2);
+        final UnitCountPricingRule unitCountPricingRule = new UnitCountPricingRule(2, 3);
 
         final UnitCountPricingRuleEntity actual = underTest.toEntity(unitCountPricingRule);
 
